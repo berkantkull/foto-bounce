@@ -8,7 +8,7 @@ const levels=[
 let levelIndex=0,level,ball,keys={left:false,right:false},state='ready',lives=3,collected=new Set(),camera=0,viewW=960,rotation=0,last=0,accumulator=0,jumpBuffer=0,coyote=0,photo=null,photoVersion=0,flash=0;
 const radius=19,STEP=1/120;
 const bonusTypes={double:{symbol:'↑↑',name:'Çift zıplama',color:'#c69aff',duration:3},speed:{symbol:'»',name:'Hız',color:'#80dbff',duration:3},ghost:{symbol:'Ø',name:'Dikenler kapalı',color:'#83edbe',duration:2},shield:{symbol:'◇',name:'Kalkan',color:'#a1baff',duration:0}};
-const bonusLayouts=[[[180,440,'double'],[460,440,'ghost'],[800,440,'speed'],[610,440,'shield'],[1530,440,'shield']],[[160,440,'double'],[610,440,'ghost'],[395,440,'shield'],[1160,430,'shield'],[1880,440,'speed']],[[155,440,'double'],[555,440,'ghost'],[310,440,'shield'],[1060,440,'shield'],[1640,435,'speed']]];
+const bonusLayouts=[[[610,440,'shield'],[1810,440,'double']],[[610,440,'ghost'],[1880,440,'speed']],[[310,440,'shield'],[1640,435,'double']]];
 let powers={double:0,speed:0,ghost:0,shield:false},bonusTaken=new Set(),airJumpUsed=false,invulnerable=0;
 function resetPowers(){powers={double:0,speed:0,ghost:0,shield:false};bonusTaken=new Set();airJumpUsed=false;invulnerable=0;powerHUD();}
 function powerHUD(){const active=[];for(const key of ['double','speed','ghost'])if(powers[key]>0)active.push(bonusTypes[key].symbol+' '+bonusTypes[key].name+' '+Math.ceil(powers[key])+' sn');if(powers.shield)active.push('◇ Kalkan · 1 darbe + sıvı köprü');$('powers').textContent=active.join('  ·  ')||'Bonus halkaları: ↑↑ çift zıplama · » hız · Ø dikenleri kapat · ◇ kalkan';}
